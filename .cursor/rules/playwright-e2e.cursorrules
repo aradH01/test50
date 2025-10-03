@@ -1,0 +1,15 @@
+{
+  "name": "Playwright E2E Testing Rules",
+  "description": "Rules for writing end-to-end tests using Playwright",
+  "rules": [
+    "Use test.describe to group related tests by page or feature.",
+    "Always use data-testid attributes for selectors.",
+    "Test user flows: login, navigation, form submissions, and critical paths.",
+    "Tests should be deterministic and isolated; do not rely on previous test state.",
+    "Include setup and teardown when necessary (beforeAll, afterAll).",
+    "E2E tests must run in CI/CD and pass before merging PRs.",
+    "E2E tests must reflect real user flows and avoid flaky waits.",
+    "Always link test cases to Xray/TestRail IDs if available.",
+    "Never duplicate Cypress and Playwright tests for the same case unless explicitly asked."
+  ]
+}

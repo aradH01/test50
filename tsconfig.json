@@ -1,0 +1,44 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "types": ["jest", "@testing-library/jest-dom"],
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./app/*"],
+      "@assets/*": ["public/assets/*"],
+      "@constants": ["app/_constants/index.ts"],
+      "@appTypes/*": ["app/_types/*"],
+      "@services/*": ["app/_api/services/*"],
+      "@utils/*": ["app/_utils/*"],
+      "@components/*": ["app/_components/*"],
+      "@providers": ["app/_providers/index.ts"],
+      "@app/*": ["app/*"],
+      "@hooks": ["app/_hooks/*"],
+      "@stores/*": ["app/_stores/*"],
+      "@styles/*": ["app/_styles/*"],
+      "@layouts/*": ["app/_layouts/*"],
+      "@validations/*": ["app/_validations/*"],
+      "@test/*": ["app/_test/*"],
+      "@lib/*": ["app/_lib/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}

@@ -1,0 +1,85 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - "**" # run on any branch
+  pull_request:
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Detect package manager
+      - name: Detect package manager
+        id: pm
+        run: |
+          if [ -f pnpm-lock.yaml ]; then
+            echo "manager=pnpm" >> $GITHUB_OUTPUT
+          elif [ -f yarn.lock ]; then
+            echo "manager=yarn" >> $GITHUB_OUTPUT
+          else
+            echo "manager=npm" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: ${{ steps.pm.outputs.manager }}
+
+      - name: Setup pnpm
+        if: ${{ steps.pm.outputs.manager == 'pnpm' }}
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Install deps
+        run: |
+          if [ "${{ steps.pm.outputs.manager }}" = "pnpm" ]; then pnpm install --frozen-lockfile; \
+          elif [ "${{ steps.pm.outputs.manager }}" = "yarn" ]; then yarn install --frozen-lockfile; \
+          else npm ci; fi
+
+      - name: Lint
+        run: |
+          if [ -f .eslintrc.js ] || [ -f .eslintrc.cjs ] || [ -f .eslintrc.json ]; then \
+            if [ "${{ steps.pm.outputs.manager }}" = "pnpm" ]; then pnpm run lint; \
+            elif [ "${{ steps.pm.outputs.manager }}" = "yarn" ]; then yarn lint; \
+            else npm run lint; fi \
+          else \
+            echo "No ESLint config, skipping"; \
+          fi
+
+      - name: Typecheck
+        run: |
+          if [ -f tsconfig.json ]; then \
+            if [ "${{ steps.pm.outputs.manager }}" = "pnpm" ]; then pnpm run typecheck; \
+            elif [ "${{ steps.pm.outputs.manager }}" = "yarn" ]; then yarn typecheck; \
+            else npm run typecheck; fi \
+          else \
+            echo "No tsconfig.json, skipping"; \
+          fi
+
+      - name: Unit tests (Jest/other)
+        run: |
+          if jq -re '.scripts.test' package.json > /dev/null; then
+            if [ "${{ steps.pm.outputs.manager }}" = "pnpm" ]; then pnpm test; \
+            elif [ "${{ steps.pm.outputs.manager }}" = "yarn" ]; then yarn test; \
+            else npm test; fi
+          else
+            echo "No test script, skipping"
+          fi
+
+      - name: Install Playwright Browsers (if Playwright detected)
+        if: ${{ hashFiles('playwright.config.*') != '' }}
+        run: npx playwright install --with-deps
+
+      - name: Playwright E2E (if Playwright detected)
+        if: ${{ hashFiles('playwright.config.*') != '' }}
+        run: |
+          if [ "${{ steps.pm.outputs.manager }}" = "pnpm" ]; then pnpm run e2e; \
+          elif [ "${{ steps.pm.outputs.manager }}" = "yarn" ]; then yarn e2e; \
+          else npm run e2e; fi

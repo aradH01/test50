@@ -1,0 +1,71 @@
+{
+  "name": "Frontend Next.js Rules",
+  "description": "Rules for writing Next.js 15 + React 19 frontend code with Tailwind and Vercel AI",
+  "rules": [
+    "Always respect the existing project structure. Never delete or rename folders that already exist (e.g., src/, pages/, tests/).",
+    "For existing projects, always follow the folder and file conventions already in use, even if they differ from these rules.",
+    "Only apply the custom app/ folder structure (_components, _hooks, _stores, etc.) when creating a new project or when explicitly requested.",
+    "If a test framework already exists (e.g., Vitest, Mocha, Cypress), use that framework instead of Jest. Do not add Jest to projects that do not already use it.",
+    "If the project already has a tests/ folder, continue adding tests there instead of creating app/_tests/.",
+    "For existing projects, detect the package manager from the lockfile and never suggest switching to pnpm unless explicitly asked.",
+    "These rules apply as defaults for new projects, but must adapt to the conventions of existing projects.",
+
+    "For new projects, never create a src/ folder. Always use app/ as the root source folder.",
+    "If an existing project already uses src/, continue using src/ instead of app/.",
+
+    "Inside app/, the following subfolders exist and must always be used for new projects:",
+    "- (pages) → Next.js App Router pages.",
+    "- _api → API client functions and API-related utilities.",
+    "- _components → shared and UI components.",
+    "- _constants → constant values such as enums, config values, tokens.",
+    "- _hooks → custom React hooks.",
+    "- _layouts → layout wrappers for pages or sections.",
+    "- _providers → React context providers and global wrappers.",
+    "- _stores → state management (Zustand, Redux, etc).",
+    "- _styles → global styles or Tailwind config extensions.",
+    "- _types → TypeScript types and interfaces.",
+    "- _validations → validation schemas (e.g. Zod, Yup).",
+
+    "When generating new files, always place them in the correct subfolder instead of creating new ones.",
+    "When updating or searching for existing files, always look inside app/ (or src/ if the project uses src/).",
+
+    "Use functional React components only; class components are forbidden.",
+    "Use Next.js App Router (app/) instead of pages/ router for new projects.",
+    "Default to Server Components; use Client Components only when interactivity is required.",
+    "All components must use TypeScript props/interfaces.",
+
+    "Whenever creating a new component in app/_components/, always create a dedicated folder named after the component in kebab-case (e.g., ShopCard → shop-card).",
+    "Inside that folder, always create two files: <component-name>.tsx and index.ts.",
+    "Always use PascalCase for the component name inside the .tsx file, but kebab-case for the folder and file name.",
+    "Never place loose .tsx component files directly in app/_components/. Always use the folder structure above.",
+
+    "Use Tailwind CSS exclusively for styling; no inline styles, CSS modules, or SCSS.",
+    "Use next/image for images and next/link for navigation.",
+    "Keep components <300 lines; split complex components into smaller hooks or child components.",
+    "Prefer reusing Tailwind classes and global styles from _styles before writing new styles.",
+    "Use Vercel AI SDK following official guidance for AI integration.",
+
+    "Whenever you create a new component/hook/util/store, always generate a matching test file:",
+    "- For new projects, place tests alongside the file (inside the component folder) and use Jest + React Testing Library.",
+    "- For existing projects, follow the test framework and folder conventions already in use (e.g., Vitest, Cypress, or centralized tests/ folder).",
+    "Tests must follow the Arrange-Act-Assert (AAA) pattern.",
+    "Tests must never be empty placeholders; always include at least one working test.",
+    "Snapshot + functional tests should be included by default.",
+
+    "For new projects, always initialize and use pnpm as the package manager.",
+    "For existing projects, always use the package manager that the project already uses.",
+    "Detect the correct package manager from the lock file:",
+    "- If pnpm-lock.yaml exists → use pnpm.",
+    "- If package-lock.json exists → use npm.",
+    "- If yarn.lock exists → use yarn.",
+    "Never suggest switching package managers unless explicitly asked.",
+    "Never generate commands with a package manager different from the one in use.",
+    "In READMEs and docs, commands must always use the correct package manager.",
+
+    "All API calls must be inside _api and imported into hooks or components.",
+    "All stores must use Zustand (never Redux, Jotai, or Context unless explicitly requested).",
+
+    "Never install new dependencies unless explicitly requested, except when initializing a new project without a testing framework (default: Jest + RTL).",
+    "Prefer existing libraries already in package.json before adding new ones."
+  ]
+}

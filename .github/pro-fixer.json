@@ -1,0 +1,9 @@
+{
+    "allowNewDeps": false,
+    "allowBreakingExports": false,
+    "updateSnapshots": false,
+    "respectProjectStructure": true,
+    "respectPackageManager": true,
+    "avoidRefactors": true
+  }
+  

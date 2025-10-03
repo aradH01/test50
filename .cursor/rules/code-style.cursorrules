@@ -1,0 +1,18 @@
+{
+  "name": "Code Style Rules",
+  "description": "Code formatting and naming conventions",
+  "rules": [
+    "Use camelCase for variables and functions; PascalCase for React components.",
+    "Respect the existing project folder structure (e.g., app/ with _components, _hooks, etc. or src/ if it exists).",
+    "Align with ESLint and Prettier configs; Cursor output must follow project style.",
+    "Prefer early returns and readable, concise functions.",
+    "Keep line length <120 characters when possible.",
+    "Add JSDoc or TSDoc comments for complex functions and hooks.",
+    "Always use TypeScript strict mode.",
+    "Never use 'any' unless explicitly required.",
+    "Prefer functional components with hooks over class components.",
+    "Use named exports instead of default exports unless it's a Next.js page.",
+    "Always use async/await instead of .then() chains.",
+    "Always format code with Prettier + ESLint."
+  ]
+}

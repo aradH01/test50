@@ -1,0 +1,191 @@
+# Pro Fixer v4 - Enhanced Auto-Fix Scripts
+
+This directory contains advanced auto-fix scripts that work alongside the GitHub Actions workflow to automatically resolve code issues.
+
+## Scripts Overview
+
+### 🔧 `advanced-typescript-fixer.js`
+
+Automatically fixes common TypeScript compilation errors:
+
+- **Missing imports**: Adds React, hooks, and common library imports
+- **Unused variables**: Prefixes with underscore to mark as intentionally unused
+- **Type annotations**: Identifies areas needing manual type annotation review
+- **Import suggestions**: Uses smart matching for common import patterns
+
+**Usage:**
+
+```bash
+npm run fix:ts
+# or
+node scripts/advanced-typescript-fixer.js
+```
+
+**Features:**
+
+- Parses TypeScript compiler output for precise error identification
+- Safe file modifications with backup and rollback capabilities
+- Intelligent import insertion at proper locations
+- Comprehensive error reporting and logging
+
+### 🧪 `test-auto-fixer.js`
+
+Automatically fixes test-related issues and maintenance:
+
+- **Snapshot updates**: Refreshes Jest snapshots automatically
+- **Import path fixes**: Corrects broken import paths in test files
+- **Missing test generation**: Creates basic test files for untested components
+- **Testing library setup**: Adds required imports for React Testing Library
+
+**Usage:**
+
+```bash
+npm run fix:test
+# or
+node scripts/test-auto-fixer.js
+```
+
+**Features:**
+
+- Automatic snapshot management
+- Smart import path resolution
+- Test pattern standardization
+- Component test scaffolding
+
+## Integration with Pro Fixer Workflow
+
+### GitHub Actions Integration
+
+The enhanced Pro Fixer v4 workflow (`.github/workflows/pro-fixer.yml`) automatically runs these scripts and includes:
+
+1. **Code Formatting** (Prettier + ESLint)
+2. **TypeScript Error Fixing** (Advanced TypeScript Fixer)
+3. **Test Maintenance** (Test Auto-Fixer)
+4. **Build Verification** (Next.js build check)
+
+### Manual Usage
+
+Run all fixes locally:
+
+```bash
+npm run fix:all
+```
+
+Individual fix commands:
+
+```bash
+npm run fix:ts      # TypeScript fixes only
+npm run fix:test    # Test fixes only
+npm run format:write # Prettier formatting
+npm run lint --fix   # ESLint fixes
+```
+
+## How It Works
+
+### 1. Error Detection
+
+- Runs TypeScript compiler (`tsc --noEmit`) to identify compilation errors
+- Executes Jest test suite to find test failures
+- Parses error output to categorize issues
+
+### 2. Automated Fixes
+
+- **Import Resolution**: Adds missing imports using smart pattern matching
+- **Code Generation**: Creates boilerplate test files for components
+- **Path Correction**: Fixes relative import paths in test files
+- **Snapshot Management**: Updates outdated Jest snapshots
+
+### 3. Verification
+
+- Re-runs TypeScript compilation after fixes
+- Executes test suite to verify fixes work
+- Reports remaining issues that need manual review
+
+## Configuration
+
+### TypeScript Fixes
+
+The TypeScript fixer includes built-in patterns for common imports:
+
+```javascript
+const commonImports = {
+  React: "import React from 'react';",
+  useState: "import { useState } from 'react';",
+  useEffect: "import { useEffect } from 'react';",
+  // ... more patterns
+};
+```
+
+### Test Fixes
+
+Import path mapping for test files:
+
+```javascript
+const importMap = {
+  "@/components": "./app/_components",
+  "@/lib": "./app/_lib",
+  "@/hooks": "./app/_hooks",
+  // ... more mappings
+};
+```
+
+## Workflow Triggers
+
+The Pro Fixer v4 workflow runs automatically on:
+
+- **Push to any branch**
+- **Pull request creation/updates**
+- **Manual workflow dispatch**
+
+## Safety Features
+
+- **Non-destructive**: All fixes preserve original code structure
+- **Rollback capable**: GitHub workflow resets on failures
+- **Incremental**: Fixes are applied one at a time with verification
+- **Logging**: Comprehensive logs for debugging and review
+
+## Extending the System
+
+### Adding New TypeScript Fixes
+
+1. Add error pattern matching in `parseTypeScriptErrors()`
+2. Implement fix logic in a new method
+3. Call the method in the main `run()` function
+
+### Adding New Test Fixes
+
+1. Add pattern detection in `fixCommonTestPatterns()`
+2. Implement fix replacement logic
+3. Test with sample files before deployment
+
+### Custom Error Patterns
+
+Both scripts can be easily extended with new error patterns and fixes by modifying the respective classes.
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Script permissions**: Ensure scripts are executable
+
+   ```bash
+   chmod +x scripts/*.js
+   ```
+
+2. **Node.js compatibility**: Scripts require Node.js 16+
+3. **Missing dependencies**: Run `npm install` before using scripts
+
+### Debug Mode
+
+Enable verbose logging by modifying the log method calls in either script.
+
+## Best Practices
+
+- **Review changes**: Always review auto-generated PRs before merging
+- **Test coverage**: Ensure auto-generated tests are meaningful
+- **Manual review**: Some TypeScript errors require human judgment
+- **Incremental adoption**: Start with basic fixes and expand gradually
+
+---
+
+_Generated by Pro Fixer v4 - Enhanced auto-fix system with TypeScript and test support_

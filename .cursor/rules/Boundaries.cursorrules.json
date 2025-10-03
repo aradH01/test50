@@ -1,0 +1,13 @@
+{
+  "name": "Auto-Fix Boundaries",
+  "description": "Hard limits for automated fixes",
+  "rules": [
+    "Never change the project’s folder structure. Respect existing app/ vs src/ layout.",
+    "Detect and use the package manager from lockfile. Never switch managers.",
+    "Do not add new dependencies without explicit instruction.",
+    "Apply only safe fixes by default: Prettier formatting, ESLint --fix, import/order cleanup.",
+    "Do not rewrite business logic unless explicitly requested.",
+    "If tests fail due to snapshots, do not update snapshots automatically unless instructed.",
+    "When a component is created, generate tests only if the project already uses a test framework."
+  ]
+}

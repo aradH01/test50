@@ -1,0 +1,17 @@
+{
+  "name": "Playwright API Testing Rules",
+  "description": "Rules for API testing using Playwright + pw-api-plugin",
+  "rules": [
+    "Use pw-api-plugin for API requests and response validation.",
+    "Group tests by endpoint using test.describe.",
+    "Validate status codes and response bodies.",
+    "Include tests for both success and error conditions.",
+    "Optionally validate response schema using zod.",
+    "Ensure tests are deterministic and independent.",
+    "Provide descriptive names for each API test.",
+    "E2E tests must reflect real user flows and avoid flaky waits.",
+    "API tests must validate both success and failure states.",
+    "Always link test cases to Xray/TestRail IDs if available.",
+    "Never duplicate Cypress and Playwright tests for the same case unless explicitly asked."
+  ]
+}

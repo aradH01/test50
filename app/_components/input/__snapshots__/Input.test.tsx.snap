@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Input matches snapshot 1`] = `
+<div
+  class="space-y-1"
+>
+  <label
+    class="block text-sm font-medium text-gray-700"
+    for="test-input"
+  >
+    Test Input
+  </label>
+  <div
+    class="relative"
+  >
+    <input
+      aria-describedby="test-input-help"
+      aria-invalid="false"
+      class="block w-full rounded-md border bg-white shadow-sm transition-colors focus:outline-none focus:ring-1 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 border-gray-300 focus:border-blue-500 focus:ring-blue-500 h-10 px-3 py-2 text-sm"
+      id="test-input"
+      placeholder="Enter text"
+    />
+  </div>
+  <p
+    class="text-sm text-gray-500"
+    id="test-input-help"
+  >
+    This is help text
+  </p>
+</div>
+`;

@@ -1,0 +1,19 @@
+{
+  "name": "Jest Unit Testing Rules",
+  "description": "Rules for writing unit tests using Jest",
+  "rules": [
+    "Always respect the project's existing test framework. Only use Jest if the project is already configured for it.",
+    "All components and hooks must have unit tests.",
+    "Test files must use the naming convention <Component>.test.tsx, <Hook>.test.ts, <Store>.test.ts, or <util>.test.ts.",
+    "Mock external dependencies only when necessary.",
+    "Aim for 80%+ code coverage for critical logic.",
+    "Use descriptive test names with test() or it() to explain behavior.",
+    "Snapshots can be used for UI components but review changes carefully.",
+    "Co-locate tests with components/hooks/utils when possible, or use the project's existing /tests folder.",
+    "All test files must follow the Arrange, Act, Assert (AAA) pattern.",
+    "Every test must include at least one meaningful assertion.",
+    "For React components, include both snapshot tests and at least one interaction test using React Testing Library.",
+    "For hooks, include at least one test verifying state change or returned values.",
+    "Never generate empty test files."
+  ]
+}

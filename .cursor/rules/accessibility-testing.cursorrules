@@ -1,0 +1,12 @@
+{
+  "name": "Accessibility Testing Rules",
+  "description": "Rules for accessibility testing in web applications",
+  "rules": [
+    "Check for ARIA roles and attributes on all interactive elements.",
+    "Ensure all text has sufficient contrast (WCAG AA minimum).",
+    "All images must have alt text or role='presentation'.",
+    "Keyboard navigation must be fully supported for all interactive components.",
+    "Use Playwright a11y or Axe plugins to automatically validate accessibility.",
+    "Include accessibility tests in CI/CD pipeline."
+  ]
+}

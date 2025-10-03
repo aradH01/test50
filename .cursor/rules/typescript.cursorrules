@@ -1,0 +1,14 @@
+{
+  "name": "TypeScript Rules",
+  "description": "Rules for TypeScript usage across the project",
+  "rules": [
+    "All files should be written in TypeScript (.ts or .tsx).",
+    "Use explicit types/interfaces for all component props, API responses, and function parameters.",
+    "Use zod for schema validation of API responses when applicable.",
+    "Never use 'any' type; prefer unknown + proper type narrowing.",
+    "Type guards must be used for dynamic data or API responses.",
+    "Enable strict mode in tsconfig.json.",
+    "Prefer types over interfaces unless extending is required.",
+    "Always type async function return values."
+  ]
+}

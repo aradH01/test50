@@ -1,0 +1,12 @@
+{
+  "name": "Pull Request Template Rules",
+  "description": "Standardized PR templates for the project",
+  "rules": [
+    "Every PR must have a clear title describing the change.",
+    "Include purpose of the change, implementation details, testing performed, and impact assessment.",
+    "Use checklists for automated and manual testing (unit, integration, E2E).",
+    "Link related issues or tickets.",
+    "Include screenshots if UI changes are present.",
+    "Follow platform-specific formatting for GitHub, GitLab, or Azure DevOps."
+  ]
+}
